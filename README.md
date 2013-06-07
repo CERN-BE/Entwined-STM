@@ -15,7 +15,7 @@ Library is very mature and is at the core of [OASIS](http://project-oasis.web.ce
 
 Examples
 -------------
-There are some examples in `src\test\java\cern\stm\demo`, but I'm planning to provide better examples in the near future. Stay tuned!
+There are some examples in [src/test/java/cern/entwined/demo](src/test/java/cern/entwined/demo), but I'm planning to provide better examples in the near future. Stay tuned!
 
 
 Installation
@@ -33,8 +33,6 @@ ls -l target
 License
 -
 
-Apache 2
-
-© Copyright 2013 CERN
+© Copyright 2013 CERN. This software is distributed under the terms of the Apache License Version 2.0, copied verbatim in the file "COPYING". In applying this licence, CERN does not waive the privileges and immunities granted to it by virtue of its status as an Intergovernmental Organization or submit itself to any jurisdiction.
 
   [Ivan Koblik]: koblik.blogspot.com
