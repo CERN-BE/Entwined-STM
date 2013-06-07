@@ -1,7 +1,7 @@
 Entwined-STM
 ============
 
-Entwined is a Software Transactional Memory implementing collections with semantic concurrency control.
+Entwined is a Software Transactional Memory implementing collections with semantic concurrency control. Library provides ACI (Atomicity, Consistency, Isolation) guarantees with closed nested transactions.
 
 The following collections have been implemented so far:
 
