@@ -15,16 +15,28 @@
   		<groupId>org.mockito</groupId>
   		<artifactId>mockito-all</artifactId>
   		<version>1.9.5-rc1</version>
+  		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.hamcrest</groupId>
   		<artifactId>hamcrest-all</artifactId>
   		<version>1.3</version>
+  		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.10</version>
+  		<scope>test</scope>
   	</dependency>
   </dependencies>
+  <scm>
+  	<url>https://github.com/CERN-BE/Entwined-STM.git</url>
+  	<developerConnection>Ivan Koblik</developerConnection>
+  </scm>
+  <url>http://entwined.koblik.ch</url>
+  <organization>
+  	<name>CERN</name>
+  	<url>http://cern.ch</url>
+  </organization>
 </project>
