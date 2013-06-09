@@ -15,7 +15,10 @@ Library is very mature and is at the core of [OASIS](http://project-oasis.web.ce
 
 Examples
 -------------
-There are some examples in [src/test/java/cern/entwined/demo](src/test/java/cern/entwined/demo), but I'm planning to provide better examples in the near future. Stay tuned!
+You can find examples in [src/test/java/cern/entwined/demo](src/test/java/cern/entwined/demo). Here I list some of them.
+- [SingleMapDemo](src/test/java/cern/entwined/demo/SingleMapDemo.java) quickly demonstrates how to use signle TransactionalMap.
+- [IsolationDemo](src/test/java/cern/entwined/demo/IsolationDemo.java) demonstrates that local changes in a transaction are not visible to concurrent transactions.
+- [RollbackDemo](src/test/java/cern/entwined/demo/RollbackDemo.java) shows that if transaction is terminated by an exception any local changes are discarded.
 
 
 Installation
