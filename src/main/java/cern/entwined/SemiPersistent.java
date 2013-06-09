@@ -32,12 +32,12 @@ public abstract class SemiPersistent<T> implements Transactional<T> {
     protected abstract T dirtyCopy();
 
     /**
-     * Applies passed change logs of the argument to <code>this</code> collection. Argument must had been originally
-     * branched from this collection with {@link SemiPersistent#dirtyCopy()}. <br>
+     * Updates local changes and change logs using change logs of the arguments. Argument must be constructed from
+     * <tt>this</tt> using {@link SemiPersistent#dirtyCopy()}. <br>
      * <b>Note:</b> Any changes done to this collections after branching will be discarded.
      * 
      * @param changes The branched collection possibly with updates.
-     * @param onlyReadLogs If true only read logs are updated.
+     * @param onlyReadLogs If true only read logs are updated. Useful for read-only transactions.
      */
     protected abstract void update(T changes, boolean onlyReadLogs);
 }
