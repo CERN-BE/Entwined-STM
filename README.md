@@ -1,4 +1,4 @@
-Entwined-STM
+Entwined-STM  [![Build Status](https://travis-ci.org/CERN-BE/Entwined-STM.png?branch=master)](https://travis-ci.org/CERN-BE/Entwined-STM)
 ============
 
 Entwined is a Software Transactional Memory implementing collections with semantic concurrency control. Library provides ACI (Atomicity, Consistency, Isolation) guarantees with closed nested transactions.
