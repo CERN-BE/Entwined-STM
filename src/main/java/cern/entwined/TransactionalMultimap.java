@@ -24,7 +24,7 @@ import com.google.common.collect.Sets;
  * @author Ivan Koblik
  */
 public class TransactionalMultimap<K, V> extends SemiPersistent<TransactionalMultimap<K, V>> implements
-        OpaqueMap<K, Set<V>> {
+        OpaqueMultimap<K, V> {
 
     /**
      * The {@link TransactionalMap} instance actually storing the data.
@@ -75,16 +75,6 @@ public class TransactionalMultimap<K, V> extends SemiPersistent<TransactionalMul
             return ImmutableSet.<V> of();
         }
     };
-
-    /**
-     * Delegates to {@link TransactionalMap#put(Object, Object)} replacing the returned <code>null</code> value with an
-     * empty set, also checks the second argument to be non-null.
-     */
-    @Override
-    public Set<V> put(K key, Set<V> value) {
-        Utils.checkNull("Immutable set", value);
-        return unsafePut(key, new HashSet<V>(value));
-    }
 
     /**
      * Stores given pair in the map, extending set associated with the key, if it already existed. This method doesn't
@@ -157,6 +147,7 @@ public class TransactionalMultimap<K, V> extends SemiPersistent<TransactionalMul
      * @param value The value that is added to the entry with the given key.
      * @return The replaced set or an empty set if there was no entry with the given key.
      */
+    @Override
     public Set<V> put(K key, V value) {
         Set<V> oldSet = this.delegate.get(key);
         if (null != oldSet) {

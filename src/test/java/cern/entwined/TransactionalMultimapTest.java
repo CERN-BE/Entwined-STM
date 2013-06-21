@@ -73,7 +73,7 @@ public class TransactionalMultimapTest {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
 
         Set<Long> expected = newSet(1l, 2l, 3l);
-        map.put(2, expected);
+        map.putAll(2, expected);
         assertEquals("Non existing pair with key=1", ImmutableSet.<Long> of(), map.get(1));
         assertEquals("Existing pair with key=2", expected, map.get(2));
     }
@@ -86,7 +86,7 @@ public class TransactionalMultimapTest {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
 
         Set<Long> expected = newSet(1l, 2l, 3l);
-        map.put(1, expected);
+        map.putAll(1, expected);
         map.get(1).clear();
     }
 
@@ -94,18 +94,18 @@ public class TransactionalMultimapTest {
      * Test method for {@link cern.entwined.TransactionalMultimap#put(java.lang.Object, java.util.Set)}.
      */
     @Test
-    public void testPutKSetOfV_copySourceAndReturnReplacedSet() {
+    public void testPutAllKCollectionOfV_copySourceAndReturnExtendedSet() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
 
         Set<Long> copy = newSet(1l, 2l, 3l);
-        assertEquals("Replaced empty set", ImmutableSet.<Long> of(), map.put(1, copy));
+        assertEquals("Replaced empty set", ImmutableSet.<Long> of(), map.putAll(1, copy));
         copy.clear();
 
         Set<Long> expected = newSet(1l, 2l, 3l);
         assertEquals("Stored set unchanged", expected, map.get(1));
 
-        Set<Long> newExpected = newSet(1l);
-        assertEquals("Replaced old set", expected, map.put(1, newExpected));
+        Set<Long> newExpected = newSet(1l, 2l, 3l, 4l);
+        assertEquals("Replaced old set", expected, map.putAll(1, newSet(4l)));
         assertEquals("New set stored", newExpected, map.get(1));
     }
 
@@ -113,9 +113,9 @@ public class TransactionalMultimapTest {
      * Test method for {@link cern.entwined.TransactionalMultimap#put(java.lang.Object, java.util.Set)}.
      */
     @Test
-    public void testPutKSetOfV_emptySet() {
+    public void testPutAllKCollectionOfV_emptySet() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
-        map.put(1, ImmutableSet.<Long> of());
+        map.putAll(1, ImmutableSet.<Long> of());
         assertFalse("Added empty set is discarded", map.containsKey(1));
     }
 
@@ -123,22 +123,13 @@ public class TransactionalMultimapTest {
      * Test method for {@link cern.entwined.TransactionalMultimap#put(java.lang.Object, java.util.Set)}.
      */
     @Test
-    public void testPutKSetOfV_nullKeyAndOneNullItem() {
+    public void testPutAllKCollectionOfV_nullKeyAndOneNullItem() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
 
         Set<Long> copy = newSet(1l, 2l, null);
-        assertEquals("Replaced empty set", ImmutableSet.<Long> of(), map.put(null, copy));
+        assertEquals("Replaced empty set", ImmutableSet.<Long> of(), map.putAll(null, copy));
         Set<Long> expected = newSet(1l, 2l, null);
         assertEquals("Stored value unchanged", expected, map.get(null));
-    }
-
-    /**
-     * Test method for {@link cern.entwined.TransactionalMultimap#put(java.lang.Object, java.util.Set)}.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testPutKSetOfV_failNullSet() {
-        TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
-        map.put(1, (Set<Long>) null);
     }
 
     /**
@@ -148,7 +139,7 @@ public class TransactionalMultimapTest {
     public void testRemoveK() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
         Set<Long> source = newSet(1l, 2l);
-        map.put(1, source);
+        map.putAll(1, source);
         assertEquals("The removed set", source, map.remove(1));
         assertEquals("Empty set in place of removed pair", ImmutableSet.<Long> of(), map.get(1));
         assertEquals("Empty set for non existing pair", ImmutableSet.<Long> of(), map.remove(null));
@@ -161,7 +152,7 @@ public class TransactionalMultimapTest {
     public void testClear() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
         Set<Long> source = newSet(1l, 2l);
-        map.put(1, source);
+        map.putAll(1, source);
         map.clear();
 
         assertEquals("Empty set in place of removed pair", ImmutableSet.<Long> of(), map.get(1));
@@ -174,7 +165,7 @@ public class TransactionalMultimapTest {
     public void testContainsKey() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
         Set<Long> source = newSet(1l, 2l);
-        map.put(1, source);
+        map.putAll(1, source);
 
         assertFalse("Non existing pair for key=null", map.containsKey(null));
         assertFalse("Non existing pair for key=0", map.containsKey(0));
@@ -192,7 +183,7 @@ public class TransactionalMultimapTest {
                 1, newSet(1l, 2l), //
                 2, newSet(2l, 3l), //
                 3, ImmutableSet.<Long> of());
-        map.put(2, newSet(5l));
+        map.putAll(2, newSet(5l));
         map.putAll(source);
 
         assertEquals("Value set for key=null", newSet(4l), map.get(null));
@@ -228,13 +219,12 @@ public class TransactionalMultimapTest {
     }
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#putAll(java.lang.Object, java.util.Collection)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#putAll(java.lang.Object, java.util.Collection)}.
      */
     @Test
     public void testPutAllKCollectionOfV() {
         TransactionalMultimap<Integer, Long> map = new TransactionalMultimap<Integer, Long>();
-        map.put(2, newSet(5l));
+        map.putAll(2, newSet(5l));
         map.putAll(null, newSet(4l));
         map.putAll(1, newSet(1l, 2l));
         map.putAll(2, newSet(2l, 3l));
@@ -247,8 +237,7 @@ public class TransactionalMultimapTest {
     }
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#putAll(java.lang.Object, java.util.Collection)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#putAll(java.lang.Object, java.util.Collection)}.
      */
     @Test(expected = IllegalArgumentException.class)
     public void testPutAllKCollectionOfV_failNullCollection() {
@@ -309,8 +298,7 @@ public class TransactionalMultimapTest {
     // ==================== Transactional methods delegation test ====================
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#commit(cern.entwined.TransactionalMultimap)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#commit(cern.entwined.TransactionalMultimap)}.
      */
     @Test
     public void testCommit() {
@@ -366,8 +354,7 @@ public class TransactionalMultimapTest {
     }
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
      */
     @Test
     public void testUpdateTransactionalMultimapOfKVBoolean() {
@@ -383,8 +370,7 @@ public class TransactionalMultimapTest {
     }
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
      */
     @Test(expected = ConflictException.class)
     public void testUpdateTransactionalMultimapOfKVBoolean_onlyReadLogs() {
@@ -405,8 +391,7 @@ public class TransactionalMultimapTest {
     }
 
     /**
-     * Test method for
-     * {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
+     * Test method for {@link cern.entwined.TransactionalMultimap#update(cern.entwined.TransactionalMultimap, boolean)}.
      */
     @Test(expected = ConflictException.class)
     public void testUpdateTransactionalMultimapOfKVBoolean_onlyReadLogs_updatesGlobalLog() {
