@@ -8,8 +8,7 @@
 package cern.entwined.exception;
 
 /**
- * Generic exception that may be thrown by the transactional memory management
- * code.
+ * Generic exception that may be thrown by the transactional memory management code.
  * <p>
  * Memory exceptions cannot be unwrapped.
  * 
@@ -17,41 +16,41 @@ package cern.entwined.exception;
  */
 public class MemoryException extends UnwrappableException {
 
-	/**
-	 * Exception version id.
-	 */
-	private static final long serialVersionUID = -4855258409489444927L;
+    /**
+     * Exception version id.
+     */
+    private static final long serialVersionUID = -4855258409489444927L;
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException()
-	 */
-	public MemoryException() {
-		super();
-		this.setUnwrap(false);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException()
+     */
+    public MemoryException() {
+        super();
+        this.setUnwrap(false);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String)
-	 */
-	public MemoryException(String message) {
-		super(message);
-		this.setUnwrap(false);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String)
+     */
+    public MemoryException(String message) {
+        super(message);
+        this.setUnwrap(false);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String, Throwable)
-	 */
-	public MemoryException(String message, Throwable cause) {
-		super(message, cause);
-		this.setUnwrap(false);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String, Throwable)
+     */
+    public MemoryException(String message, Throwable cause) {
+        super(message, cause);
+        this.setUnwrap(false);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(Throwable)
-	 */
-	public MemoryException(Throwable cause) {
-		super(cause);
-		this.setUnwrap(false);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(Throwable)
+     */
+    public MemoryException(Throwable cause) {
+        super(cause);
+        this.setUnwrap(false);
+    }
 
 }

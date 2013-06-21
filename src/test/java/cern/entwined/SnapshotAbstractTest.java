@@ -18,7 +18,7 @@ import org.junit.Test;
  * 
  * @author Ivan Koblik
  */
-@SuppressWarnings( { "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public abstract class SnapshotAbstractTest {
 
     protected abstract Snapshot getSnapshot(long timestamp);

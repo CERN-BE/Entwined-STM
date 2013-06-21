@@ -78,8 +78,8 @@ public class TestSnapshot extends Snapshot<TestSnapshot> {
 
     @Override
     public TestSnapshot commit(TestSnapshot globalState) {
-        return new TestSnapshot(globalState.timestamp + 1, this.compositeCollection
-                .commit(globalState.compositeCollection));
+        return new TestSnapshot(globalState.timestamp + 1,
+                this.compositeCollection.commit(globalState.compositeCollection));
     }
 
     public TransactionalRef<Integer> getRef1() {

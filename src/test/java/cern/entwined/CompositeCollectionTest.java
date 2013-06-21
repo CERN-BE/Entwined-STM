@@ -29,7 +29,7 @@ import cern.entwined.exception.ConflictException;
  * 
  * @author Ivan Koblik
  */
-@SuppressWarnings( { "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class CompositeCollectionTest {
 
     @Before

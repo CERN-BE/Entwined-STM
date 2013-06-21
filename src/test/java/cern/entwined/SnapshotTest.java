@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * @author Ivan Koblik
  */
-@SuppressWarnings( { "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class SnapshotTest extends SnapshotAbstractTest {
 
     @Override

@@ -7,7 +7,6 @@
  */
 package cern.entwined;
 
-
 /**
  * A common abstract class for client specific implementations of transactional shared memory. Snapshot mainly serves as
  * a root node in the tree of shared memory. It may also be described as a single access point to transactional shared

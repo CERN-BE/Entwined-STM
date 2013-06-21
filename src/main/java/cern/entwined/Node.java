@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Represents a node of a tree. Supports stack of zero to n child nodes. Every node can be associated with a value of
  * type T.

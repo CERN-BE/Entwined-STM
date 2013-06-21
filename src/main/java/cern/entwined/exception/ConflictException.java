@@ -8,43 +8,42 @@
 package cern.entwined.exception;
 
 /**
- * Exception is thrown by transactional data types at commit time when a
- * conflict is detected.
+ * Exception is thrown by transactional data types at commit time when a conflict is detected.
  * 
  * @author Ivan Koblik
  */
 public class ConflictException extends MemoryException {
 
-	/**
-	 * Exception version id.
-	 */
-	private static final long serialVersionUID = -4855258409489444926L;
+    /**
+     * Exception version id.
+     */
+    private static final long serialVersionUID = -4855258409489444926L;
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException()
-	 */
-	public ConflictException() {
-		super();
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException()
+     */
+    public ConflictException() {
+        super();
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String)
-	 */
-	public ConflictException(String message) {
-		super(message);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String)
+     */
+    public ConflictException(String message) {
+        super(message);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String, Throwable)
-	 */
-	public ConflictException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String, Throwable)
+     */
+    public ConflictException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(Throwable)
-	 */
-	public ConflictException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(Throwable)
+     */
+    public ConflictException(Throwable cause) {
+        super(cause);
+    }
 }

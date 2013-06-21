@@ -7,7 +7,6 @@
  */
 package cern.entwined;
 
-
 /**
  * A memory snapshot composed of client specific data of type V and of global storage. Global storage is used by
  * {@link GlobalReference}s to keep session wide data.
@@ -95,7 +94,7 @@ class BaseSnapshot<V extends SemiPersistent<V>> extends Snapshot<BaseSnapshot<V>
     @Override
     public BaseSnapshot<V> commit(BaseSnapshot<V> globalState) {
         Utils.checkNull("Global state", globalState);
-        return new BaseSnapshot<V>(this.timestamp + 1, this.clientData.commit(globalState.clientData), this.globalMap
-                .commit(globalState.globalMap));
+        return new BaseSnapshot<V>(this.timestamp + 1, this.clientData.commit(globalState.clientData),
+                this.globalMap.commit(globalState.globalMap));
     }
 }

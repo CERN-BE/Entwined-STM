@@ -14,40 +14,40 @@ package cern.entwined.exception;
  */
 public class InvocationException extends UnwrappableException {
 
-	/**
-	 * Exception version id.
-	 */
-	private static final long serialVersionUID = -4855258409489444927L;
+    /**
+     * Exception version id.
+     */
+    private static final long serialVersionUID = -4855258409489444927L;
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException()
-	 */
-	public InvocationException() {
-		super();
-		this.setUnwrap(true);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException()
+     */
+    public InvocationException() {
+        super();
+        this.setUnwrap(true);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String)
-	 */
-	public InvocationException(String message) {
-		super(message);
-		this.setUnwrap(true);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String)
+     */
+    public InvocationException(String message) {
+        super(message);
+        this.setUnwrap(true);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(String, Throwable)
-	 */
-	public InvocationException(String message, Throwable cause) {
-		super(message, cause);
-		this.setUnwrap(true);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(String, Throwable)
+     */
+    public InvocationException(String message, Throwable cause) {
+        super(message, cause);
+        this.setUnwrap(true);
+    }
 
-	/**
-	 * @see UnwrappableException#OasisUnavailableException(Throwable)
-	 */
-	public InvocationException(Throwable cause) {
-		super(cause);
-		this.setUnwrap(true);
-	}
+    /**
+     * @see UnwrappableException#OasisUnavailableException(Throwable)
+     */
+    public InvocationException(Throwable cause) {
+        super(cause);
+        this.setUnwrap(true);
+    }
 }

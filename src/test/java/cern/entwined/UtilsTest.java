@@ -100,8 +100,8 @@ public class UtilsTest {
         double expected = Math.scalb(1, exponent);
         double noise = Math.scalb(1, exponent - 1) - Math.scalb(1, exponent - 2);
         double value = expected + noise;
-        assertEquals("Rounding exp=log(2,1e-10); 2^exp + 2^(exp-1) - 2^(exp-2) to exp", expected, Utils.round(value,
-                exponent), 0d);
+        assertEquals("Rounding exp=log(2,1e-10); 2^exp + 2^(exp-1) - 2^(exp-2) to exp", expected,
+                Utils.round(value, exponent), 0d);
     }
 
     @Test
@@ -111,8 +111,8 @@ public class UtilsTest {
         // Adding lower power of two to be sure that carry will be performed
         double noise = Math.scalb(1, exponent - 1) + Math.scalb(1, exponent - 2);
         double value = expected + noise;
-        assertEquals("Rounding exp=log(2,1e-10); 2^exp + 2^(exp-1) + 2^(exp-2) to exp", 2 * expected, Utils.round(
-                value, exponent), 0d);
+        assertEquals("Rounding exp=log(2,1e-10); 2^exp + 2^(exp-1) + 2^(exp-2) to exp", 2 * expected,
+                Utils.round(value, exponent), 0d);
     }
 
     @Test

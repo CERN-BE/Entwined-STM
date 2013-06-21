@@ -28,7 +28,7 @@ import cern.entwined.exception.ConflictException;
  * 
  * @author Ivan Koblik
  */
-@SuppressWarnings( { "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class BaseSnapshotTest extends SnapshotAbstractTest {
 
     Map<Long, Object> testMap = Collections.unmodifiableMap(newMap(newList(1L, 2L), (List) newList(10L, 20L)));

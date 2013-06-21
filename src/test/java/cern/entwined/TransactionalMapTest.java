@@ -1292,8 +1292,8 @@ public class TransactionalMapTest {
         Map<Integer, Integer> newMap = newMap(newList(1, 2, 3, 4, 5, 6, 7), newList(5, 6, 7, 8, 10, 11, 12));
         globalState = new TransactionalMap<Integer, Integer>(newMap);
 
-        Map<Integer, Integer> result = newMap(newList(1, 2, 3, 4, 5, 6, 7, 102, 103), newList(5, 6, 7, 8, 10, 11, 12,
-                100, 101));
+        Map<Integer, Integer> result = newMap(newList(1, 2, 3, 4, 5, 6, 7, 102, 103),
+                newList(5, 6, 7, 8, 10, 11, 12, 100, 101));
         TransactionalMap<Integer, Integer> commitResult = localMap.commit(globalState);
         for (Integer key : result.keySet()) {
             assertEquals("All keys from global state with added tuple", result.get(key), commitResult.get(key));

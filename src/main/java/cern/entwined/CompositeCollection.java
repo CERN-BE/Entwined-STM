@@ -7,7 +7,6 @@
  */
 package cern.entwined;
 
-
 import com.google.common.base.Function;
 
 /**
@@ -19,7 +18,7 @@ import com.google.common.base.Function;
  * 
  * @author Ivan Koblik
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public final class CompositeCollection extends SemiPersistent<CompositeCollection> {
 
     /**

@@ -25,21 +25,17 @@ import cern.entwined.exception.NoTransactionExceptionTest;
  * @author Ivan Koblik
  */
 @RunWith(Suite.class)
-@SuiteClasses({ TransactionalMapTest.class, TransactionalRefTest.class,
-		NodeTest.class, MemoryTest.class, SnapshotTest.class,
-		CompositeCollectionTest.class, MemoryExceptionTest.class,
-		ConflictExceptionTest.class, NoTransactionExceptionTest.class,
-		InvocationExceptionTest.class, GlobalReferenceTest.class,
-		BaseSnapshotTest.class, STMUtilsTest.class,
-		TransactionAdapterTest.class, TransactionalQueueTest.class,
-		TransactionalMultimapTest.class, TransactionClosureTest.class,
-		UtilsTest.class })
+@SuiteClasses({ TransactionalMapTest.class, TransactionalRefTest.class, NodeTest.class, MemoryTest.class,
+        SnapshotTest.class, CompositeCollectionTest.class, MemoryExceptionTest.class, ConflictExceptionTest.class,
+        NoTransactionExceptionTest.class, InvocationExceptionTest.class, GlobalReferenceTest.class,
+        BaseSnapshotTest.class, STMUtilsTest.class, TransactionAdapterTest.class, TransactionalQueueTest.class,
+        TransactionalMultimapTest.class, TransactionClosureTest.class, UtilsTest.class })
 public class AllSTMTests {
 
-	/**
-	 * Method for JUint 3 compatibility.
-	 */
-	public static Test suite() {
-		return new JUnit4TestAdapter(AllSTMTests.class);
-	}
+    /**
+     * Method for JUint 3 compatibility.
+     */
+    public static Test suite() {
+        return new JUnit4TestAdapter(AllSTMTests.class);
+    }
 }

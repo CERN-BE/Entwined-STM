@@ -8,27 +8,24 @@
 package cern.entwined.exception;
 
 /**
- * This interface must be implemented by exceptions that may be unwrapped by the
- * {@link UnwrappableException} or {@link OasisUnavailableCheckedException}
- * .
+ * This interface must be implemented by exceptions that may be unwrapped by the {@link UnwrappableException} or
+ * {@link OasisUnavailableCheckedException} .
  * 
  * @author Ivan Koblik
- * @param <T>
- *            The exception type.
+ * @param <T> The exception type.
  */
 public interface Unwrappable<T> {
-	/**
-	 * Sets unwrap flag to true or false.
-	 * 
-	 * @param unwrappable
-	 *            the unwrap flag value.
-	 */
-	public T setUnwrap(boolean unwrappable);
+    /**
+     * Sets unwrap flag to true or false.
+     * 
+     * @param unwrappable the unwrap flag value.
+     */
+    public T setUnwrap(boolean unwrappable);
 
-	/**
-	 * Returns the unwrap flag value.
-	 * 
-	 * @return the unwrap flag value.
-	 */
-	public boolean getUnwrap();
+    /**
+     * Returns the unwrap flag value.
+     * 
+     * @return the unwrap flag value.
+     */
+    public boolean getUnwrap();
 }

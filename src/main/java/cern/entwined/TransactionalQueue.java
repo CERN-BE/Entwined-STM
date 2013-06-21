@@ -111,8 +111,8 @@ public class TransactionalQueue<E> extends SemiPersistent<TransactionalQueue<E>>
 
     @Override
     protected TransactionalQueue<E> dirtyCopy() {
-        TransactionalQueue<E> copy = new TransactionalQueue<E>(this.sourceQueue, this.globalPollCount, this.sourceQueue
-                .listIterator(Math.min(sourceQueue.size(), pollCount)), new LinkedList<E>(this.tail));
+        TransactionalQueue<E> copy = new TransactionalQueue<E>(this.sourceQueue, this.globalPollCount,
+                this.sourceQueue.listIterator(Math.min(sourceQueue.size(), pollCount)), new LinkedList<E>(this.tail));
         copy.peekCount = this.peekCount;
         copy.pollCount = this.pollCount;
         return copy;
@@ -171,13 +171,13 @@ public class TransactionalQueue<E> extends SemiPersistent<TransactionalQueue<E>>
         } else {
             // Remove the polled items from the head.
             int globalSize = globalState.sourceQueue.size();
-            LinkedList<E> resultingList = new LinkedList<E>(globalState.sourceQueue.subList(Math.min(this.pollCount,
-                    globalSize), globalSize));
+            LinkedList<E> resultingList = new LinkedList<E>(globalState.sourceQueue.subList(
+                    Math.min(this.pollCount, globalSize), globalSize));
             // Append the new items to the tail.
             resultingList.addAll(this.tail);
             // Increase the number of polled items with the local value.
             @SuppressWarnings("rawtypes")
-			TransactionalQueue<E> result = new TransactionalQueue<E>(resultingList, globalState.globalPollCount
+            TransactionalQueue<E> result = new TransactionalQueue<E>(resultingList, globalState.globalPollCount
                     + this.pollCount, (ListIterator) EMPTY_ITERATOR, Collections.EMPTY_LIST);
             return result;
         }
