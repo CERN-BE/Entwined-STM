@@ -24,14 +24,22 @@ You can find examples in [src/test/java/cern/entwined/demo](src/test/java/cern/e
 Installation
 --------------
 
-I'm planning to publish it on Maven central, but for now you can build it from the sources.
+For Maven users please add this dependency to your `pom.xml`:
 
 ```
-git clone git://github.com/CERN-BE/Entwined-STM.git
-cd Entwined-STM
-mvn jar:jar
-ls -l target
+<dependency>
+	<groupId>ch.cern</groupId>
+	<artifactId>entwined-stm</artifactId>
+	<version>1.0.0</version>
+</dependency>
 ```
+
+For Leiningen users please add this line to your `project.clj`:
+
+```
+[ch.cern/entwined-stm "1.0.0"]
+```
+
 
 License
 -
