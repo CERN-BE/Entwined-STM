@@ -8,7 +8,7 @@
 
 	<groupId>ch.cern</groupId>
 	<artifactId>entwined-stm</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Entwined STM</name>
