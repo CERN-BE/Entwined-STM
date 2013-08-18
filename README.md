@@ -51,6 +51,7 @@ You can find examples in [src/test/java/cern/entwined/demo](src/test/java/cern/e
 - [SingleMapDemo](src/test/java/cern/entwined/demo/SingleMapDemo.java) quickly demonstrates how to use signle TransactionalMap.
 - [IsolationDemo](src/test/java/cern/entwined/demo/IsolationDemo.java) demonstrates that local changes in a transaction are not visible to concurrent transactions.
 - [RollbackDemo](src/test/java/cern/entwined/demo/RollbackDemo.java) shows that if transaction is terminated by an exception any local changes are discarded.
+- [Clojure examples](src/test/java/cern/entwined/demo/clojure_examples.clj) makes use of Clojure facade. Shows how to crate a custom snapshot and access it.
 
 
 Installation
