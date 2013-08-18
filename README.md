@@ -13,6 +13,38 @@ The following collections have been implemented so far:
 
 Library is very mature and is at the core of [OASIS](http://project-oasis.web.cern.ch/project-oasis/) which is a mission critical system at CERN.
 
+Overview
+-------------
+
+Entry point to the library is the [Memory](src/main/java/cern/entwined/Memory.java) class. To construct it client has to provide an instance of the [SemiPersistent](src/main/java/cern/entwined/SemiPersistent.java) abstract class. All the transactional collections listed above extend this class.
+
+The client can define her own transactional data type by directly extending SemiPersistent class or by using [CompositeCollection](src/main/java/cern/entwined/CompositeCollection.java). [TestSnapshot](src/test/java/cern/entwined/TestSnapshot.java) is a good example of a custom implementation.
+
+To access the memory client has to run transaction:
+
+```java
+Memory<TransactionalMap<Integer, Integer>> memory = new Memory<TransactionalMap<Integer, Integer>>(
+                new TransactionalMap<Integer, Integer>());
+memory.runTransaction(new Transaction<TransactionalMap<Integer, Integer>>() {
+    @Override
+    public boolean run(TransactionalMap<Integer, Integer> data) throws Exception {
+        //Operate on data here.
+
+        return true; //true to commit, false to rollback
+    }
+
+    @Override
+    public void committed(TransactionalMap<Integer, Integer> data) throws Exception {
+        //Called when transaction has been committed. Commit callbacks are globally ordered
+        //and are called in the commit order.
+
+        //Read data here, any changes will be discarded.
+    }
+}
+```
+
+During commit memory may detect conflicts due to concurrent changes. In such a case `Memory` class will restart the transaction by discarding all the modifications done in the `run` method and by calling it again with the fresh snapshot of the data. Because of this it is crucial to never perform output in the `run` method, any output operation should be reserved for the `committed` block.
+
 Examples
 -------------
 You can find examples in [src/test/java/cern/entwined/demo](src/test/java/cern/entwined/demo). Here I list some of them.
@@ -26,7 +58,7 @@ Installation
 
 For Maven users please add this dependency to your `pom.xml`:
 
-```
+```xml
 <dependency>
 	<groupId>ch.cern</groupId>
 	<artifactId>entwined-stm</artifactId>
@@ -36,7 +68,7 @@ For Maven users please add this dependency to your `pom.xml`:
 
 For Leiningen users please add this line to your `project.clj`:
 
-```
+```clojure
 [ch.cern/entwined-stm "1.0.0"]
 ```
 
