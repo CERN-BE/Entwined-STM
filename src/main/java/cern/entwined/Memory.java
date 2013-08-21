@@ -27,6 +27,13 @@ import cern.entwined.exception.NoTransactionException;
 public class Memory<T extends SemiPersistent<T>> {
 
     /**
+     * Current thread will wait for a notification from the other threads currently processing committed blocks, if it
+     * happens that other threads die unexpectedly this timeout will revive the current thread. The value is in
+     * milliseconds.
+     */
+    private static final int THEAD_DEATH_DELAY = 3000;
+
+    /**
      * Number of retries of a transaction in case of conflicts.
      */
     protected static final int NUM_RETRIES = 10000;
@@ -171,6 +178,7 @@ public class Memory<T extends SemiPersistent<T>> {
             } finally {
                 this.commitQueue.poll();
                 isCommitting.set(false);
+                notifyNextInQueue();
             }
             break;
         }
@@ -324,17 +332,34 @@ public class Memory<T extends SemiPersistent<T>> {
 
         // Waiting for argument to appear in the head of queue.
         while (this.commitQueue.peek() != newGlobalState) {
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                // Remembering the flag, but continuing waiting for the queue.
-                interrupted = true;
+            synchronized (newGlobalState) {
+                if (this.commitQueue.peek() != newGlobalState) {
+                    try {
+                        newGlobalState.wait(THEAD_DEATH_DELAY);
+                    } catch (InterruptedException e) {
+                        // Remembering the flag, but continuing waiting for the queue.
+                        interrupted = true;
+                    }
+                }
             }
         }
 
         // Preserving the interrupted flag
         if (interrupted) {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Checks if there's another {@link BaseSnapshot} in the commitQueue and if there is notifies all the threads
+     * waiting on it.
+     */
+    private void notifyNextInQueue() {
+        BaseSnapshot<T> next = this.commitQueue.peek();
+        if (null != next) {
+            synchronized (next) {
+                next.notifyAll();
+            }
         }
     }
 }
