@@ -63,14 +63,14 @@ For Maven users please add this dependency to your `pom.xml`:
 <dependency>
 	<groupId>ch.cern</groupId>
 	<artifactId>entwined-stm</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 </dependency>
 ```
 
 For Leiningen users please add this line to your `project.clj`:
 
 ```clojure
-[ch.cern/entwined-stm "1.0.0"]
+[ch.cern/entwined-stm "1.0.1"]
 ```
 
 
